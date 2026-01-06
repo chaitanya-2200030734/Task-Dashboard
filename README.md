@@ -1,53 +1,104 @@
-# Getting Started with Create React App
+# Task Management Dashboard
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A complete task management application built with React.js, Redux Toolkit, and Tailwind CSS.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Task Management**: Add, edit, delete, and toggle task status
+- **Filtering**: View all, pending, or completed tasks
+- **Search**: Case-insensitive search by task title
+- **Theme Toggle**: Switch between light and dark modes
+- **Responsive Design**: Mobile-first layout
+- **Mock API**: JSON Server for backend simulation
 
-### `npm start`
+## Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- React.js (JavaScript)
+- Redux Toolkit for state management
+- Tailwind CSS for styling
+- JSON Server for mock API
+- Create React App
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Setup Instructions
 
-### `npm test`
+1. **Clone or navigate to the project directory**
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. **Install dependencies**
 
-### `npm run build`
+   ```
+   npm install
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. **Start the mock API server** (in a separate terminal)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   ```
+   npm run server
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   This starts JSON Server on `http://localhost:3001`
 
-### `npm run eject`
+4. **Start the React app**
+   ```
+   npm start
+   ```
+   The app will run on `http://localhost:3000`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Usage
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Add new tasks using the form at the top
+- Use filters to view specific task statuses
+- Search tasks by typing in the search bar
+- Edit tasks by clicking the Edit button
+- Toggle task status with the Complete/Pending button
+- Delete tasks with the Delete button
+- Switch themes using the theme toggle button
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Project Structure
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```
+src/
+ ├── app/
+ │   ├── store.js          # Redux store configuration
+ │   └── hooks.js          # Custom hooks for dispatch and selector
+ ├── features/
+ │   └── tasks/
+ │       ├── taskSlice.js      # Redux slice for tasks
+ │       ├── taskThunks.js     # Async thunks for API calls
+ │       ├── taskSelectors.js  # Selectors for computed state
+ │       └── taskAPI.js        # API functions
+ ├── components/
+ │   ├── TaskList.jsx      # Displays list of tasks
+ │   ├── TaskItem.jsx      # Individual task component
+ │   ├── TaskForm.jsx      # Form for adding tasks
+ │   ├── Filters.jsx       # Filter buttons
+ │   ├── SearchBar.jsx     # Search input
+ │   └── ThemeToggle.jsx   # Theme switcher
+ ├── pages/
+ │   └── Dashboard.jsx     # Main dashboard page
+ ├── App.js                # Root component with Redux Provider
+ ├── index.js              # App entry point
+ └── index.css             # Tailwind CSS imports
+```
 
-## Learn More
+## API Endpoints
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The mock API provides the following endpoints:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- `GET /tasks` - Fetch all tasks
+- `POST /tasks` - Add a new task
+- `PATCH /tasks/:id` - Update a task
+- `DELETE /tasks/:id` - Delete a task
 
-### Code Splitting
+Task data model:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```json
+{
+  "id": "string",
+  "title": "string",
+  "status": "pending" | "completed",
+  "createdAt": "string"
+}
+```
 
 ### Analyzing the Bundle Size
 
